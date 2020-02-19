@@ -5,3 +5,19 @@ nz-input-group {
 form {
   text-align: right;
 }
+
+.item {
+  display: grid;
+  grid-template-columns: 100px 80px auto 100px;
+}
+
+.ant-result-title,
+.ant-result-subtitle {
+  white-space: normal;
+}
+
+@media only screen and (max-width: 720px) {
+  .item {
+    grid-template-columns: 100px 80px auto 64px;
+  }
+}

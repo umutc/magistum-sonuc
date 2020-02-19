@@ -5,9 +5,12 @@ import { WelcomeRoutingModule } from './welcome-routing.module';
 import { ResultComponent } from './result/result.component';
 import { ResultService } from './result/result.service';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzIconModule, NzButtonModule } from 'ng-zorro-antd';
+import { NzIconModule, NzButtonModule, NzListModule } from 'ng-zorro-antd';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { ResultDetailComponent } from './result-detail/result-detail.component';
+import { SumallPipe } from './pipes/sumall.pipe';
 
 @NgModule({
   imports: [
@@ -16,11 +19,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NzInputModule,
     NzIconModule,
     NzButtonModule,
+    NzListModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzResultModule,
   ],
-  declarations: [ResultComponent],
+  declarations: [ResultComponent, ResultDetailComponent, SumallPipe],
   exports: [],
-  providers: [ResultService]
+  providers: [ResultService, SumallPipe]
 })
 export class WelcomeModule { }

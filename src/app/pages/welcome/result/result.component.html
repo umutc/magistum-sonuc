@@ -7,11 +7,48 @@
       <i nz-icon nzType="search"></i>
     </ng-template>
 
-    <button type="submit" nz-button nzType="primary" (click)="submit.next(pid.value)" [disabled]="pid.invalid" [nzLoading]="loading$ | async">
-      <i nz-icon nzType="poweroff"></i>Sonuçları Göster
+    <button type="submit" nz-button nzType="primary" (click)="submit.next(pid.value)" [disabled]="pid.invalid"
+      [nzLoading]="loading$ | async">
+      <i nz-icon nzType="search"></i>Sonuçları Göster
     </button>
   </form>
 </div>
-<div class="result" *ngIf="result$ | async">
-
+<div class="result" *ngIf="result$ | async as data">
+  <h3 [ngStyle]="{ margin: '16px 0' }">Sonuçlar</h3>
+  <ul nz-list [nzDataSource]="data" nzBordered nzSize="large" [nzHeader]="'Toplam girilen sınav: ' + data.length"
+    [nzRenderItem]="largeItem">
+    <ng-template #largeItem let-item>
+      <li nz-list-item [nzActions]="[opAction]" nzNoFlex class="item">
+        <span class="date">{{ item.datetime | date }}</span>
+        <span class="text">{{ item.result.point[0].result }}</span>
+        <span class="text">{{ item.title }}</span>
+      </li>
+      <ng-template #opAction><a (click)="exam$.next(item)">Göster</a></ng-template>
+    </ng-template>
+  </ul>
 </div>
+
+<ng-container *ngIf="exam$ | async as exam">
+  <nz-result
+      *ngIf="exam.result.point[0].result >= 440" nzStatus="success">
+      <div nz-result-title>Kayıt ve burs hakedişiniz vardır.</div>
+      <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
+      <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
+      <div nz-result-extra>Karneniz aşağıdadır</div>
+  </nz-result>
+  <nz-result
+      *ngIf="exam.result.point[0].result >= 350 && exam.result.point[0].result < 440" nzStatus="success">
+      <div nz-result-title>Kayıt hakedişiniz vardır.</div>
+      <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
+      <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
+      <div nz-result-extra>Karneniz aşağıdadır</div>
+  </nz-result>
+  <nz-result
+      *ngIf="exam.result.point[0].result < 350" nzStatus="warning">
+      <div nz-result-title>Burs hakedişiniz yoktur.</div>
+      <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
+      <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
+      <div nz-result-extra>Karneniz aşağıdadır</div>
+  </nz-result>
+  <app-result-detail id="result-detail" [exam]="exam"></app-result-detail>
+</ng-container>
