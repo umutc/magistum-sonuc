@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { ResultDetailComponent } from './result-detail/result-detail.component';
 import { SumallPipe } from './pipes/sumall.pipe';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { SumallPipe } from './pipes/sumall.pipe';
     FormsModule,
     ReactiveFormsModule,
     NzResultModule,
+    NzTableModule
   ],
   declarations: [ResultComponent, ResultDetailComponent, SumallPipe],
   exports: [],

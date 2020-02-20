@@ -29,26 +29,5 @@
 </div>
 
 <ng-container *ngIf="exam$ | async as exam">
-  <nz-result
-      *ngIf="exam.result.point[0].result >= 440" nzStatus="success">
-      <div nz-result-title>Kayıt ve burs hakedişiniz vardır.</div>
-      <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
-      <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
-      <div nz-result-extra>Karneniz aşağıdadır</div>
-  </nz-result>
-  <nz-result
-      *ngIf="exam.result.point[0].result >= 350 && exam.result.point[0].result < 440" nzStatus="success">
-      <div nz-result-title>Kayıt hakedişiniz vardır.</div>
-      <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
-      <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
-      <div nz-result-extra>Karneniz aşağıdadır</div>
-  </nz-result>
-  <nz-result
-      *ngIf="exam.result.point[0].result < 350" nzStatus="warning">
-      <div nz-result-title>Burs hakedişiniz yoktur.</div>
-      <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
-      <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
-      <div nz-result-extra>Karneniz aşağıdadır</div>
-  </nz-result>
   <app-result-detail id="result-detail" [exam]="exam"></app-result-detail>
 </ng-container>

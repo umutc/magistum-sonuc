@@ -1,203 +1,125 @@
-<div class="row" style="display: grid;grid-template-columns: 57px auto 57px;">
+<div class="row"
+  style="display: grid;grid-template-columns: 128px auto 128px; align-items: center; margin-bottom: 1.125rem;">
   <img class="img-header-left" src="{{ exam.school.image_url }}" />
-  <h2 class="title-header text-center">
-    {{ exam.title }}
-  </h2>
+  <h2 style="text-align: center;">ANABİLİM GİRİŞ SINAVI (AGS) SONUCU</h2>
   <img *ngIf="exam.user" class="img-header-right" src="{{ exam.user.image_url}}" />
 </div>
 
-<div class="row">
-  <table class="student_identity">
-    <tr>
-      <td>
-        Öğrenci Nu:
-        <span>
-          <ng-container *ngIf="exam.user; else tmpExamUserStudentId;">
-            {{ exam.user.student_id }}
-          </ng-container>
-          <ng-template #tmpExamUserStudentId>{{ exam.student_id }}</ng-template>
-        </span>
-      </td>
-      <td>
-        Adı Soyadı:
-        <span>
-          <ng-container *ngIf="exam.user; else tmpExamUserStudentId;">
-            {{ exam.user.name }} {{ exam.user.surname }}
-          </ng-container>
-          <ng-template #tmpExamUserNameSurname>{{ exam.namesurname }}</ng-template>
-        </span>
-      </td>
-      <td>
-        Sınav Tarihi:
-        <span>{{ exam.datetime | date }}</span>
-      </td>
-      <td>
-        Kitapçık Türü:
-        <span>{{ exam.book }}</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Şube:
-        <span>
-          <ng-container *ngIf="exam.user; else tmpExamUserStudentId;">
-            {{ exam.user.class_branch_title }}
-          </ng-container>
-          <ng-template #tmpExamUserClassBranch>{{ exam.class }}/{{exam.branch}}</ng-template>
-        </span>
-      </td>
-      <td>
-        Sınav Adı:
-        <span>{{ exam.title }}</span>
-      </td>
-      <td colspan="2">
-        Toplam Öğrenci
-        <span>{{ exam.student_count }}</span>
-      </td>
-    </tr>
-  </table>
-</div>
 
-<div class="row_half text-center">
-  <table class="points">
+<nz-table #colSpanTable [nzData]="[true]" [nzShowPagination]="false" nzBordered class="student_identity"
+  style="margin-bottom: 1.125rem;">
+  <tbody>
     <tr>
-      <th rowspan="2" style="min-width: 76px;">Puan Türleri</th>
-      <th rowspan="2">Sınav Puanı</th>
-      <th rowspan="2">Genel Puan Ort.</th>
-      <th colspan="3">Puana Göre Başarı Sıralaması</th>
+      <td class="student_identity_title">
+        Öğrencin Adı Soyadı:
+      </td>
+      <td>
+        <ng-container *ngIf="exam.user && exam.user.name; else tmpExamUserNameSurname;">
+          {{ exam.user.name }} {{ exam.user.surname }}
+        </ng-container>
+        <ng-template #tmpExamUserNameSurname>{{ exam.namesurname }}</ng-template>
+      </td>
     </tr>
     <tr>
-      <th class="below">Şube</th>
-      <th class="below">Okul</th>
-      <th class="below">Genel</th>
+      <td class="student_identity_title">Sınav Adı</td>
+      <td>{{ exam.title }}:</td>
     </tr>
-    <ng-container *ngFor="let item of exam.result.point">
-      <tr class="text-center answers_title">
-        <th>{{ item.title }}</th>
-        <td>{{ item.result }}</td>
-        <td>{{ item.avg.all }}</td>
-        <td>{{ item.degree.branch }}</td>
-        <td>{{ item.degree.school }}</td>
-        <td>{{ item.degree.all }}</td>
-      </tr>
-    </ng-container>
-  </table>
-  <table class="answers">
-    <tr class="text-center">
-      <th>Soru Nu</th>
-      <td>
-        <div class="question">
-          <span class="question_answer">12345678910</span>
-        </div>
-      </td>
-      <td>
-        <div class="question">
-          <span class="question_answer">12345678910</span>
-        </div>
-      </td>
-      <td>
-        <div class="question">
-          <span class="question_answer">12345678910</span>
-        </div>
-      </td>
-      <td>
-        <div class="question">
-          <span class="question_answer">12345678910</span>
-        </div>
-      </td>
+    <tr>
+      <td class="student_identity_title">Sınav Tarihi:</td>
+      <td>{{ exam.datetime | date }}</td>
     </tr>
+  </tbody>
+</nz-table>
+
+<nz-table #colSpanTable [nzData]="[true]" [nzShowPagination]="false" nzBordered style="margin-bottom: 1.125rem;">
+  <thead>
+    <tr>
+      <th colspan="5">AGS (Anabilim Giriş Sınavı) Sonucu</th>
+    </tr>
+    <tr>
+      <th>#</th>
+      <th>Doğru</th>
+      <th>Yanlış</th>
+      <th>Boş</th>
+      <th>Net</th>
+    </tr>
+  </thead>
+  <tbody>
     <ng-container *ngFor="let session of exam.session">
       <ng-container *ngFor="let lesson of session.lessons">
         <tr>
-          <th class="answers_title">{{ lesson.title }}
-            <br>
-            <span>Öğrenci Cevabı</span>
-          </th>
-          <td colspan="4">
-            <ng-container *ngFor="let question of lesson.questions">
-              <div class="question state-{{ question.state }}">
-
-                <span class="question_answer">{{ question.answer }}</span>
-                <br>
-                <span class="student_answer">{{ question.user_option }}</span>
-              </div>
-            </ng-container>
-          </td>
-        </tr>
-      </ng-container>
-    </ng-container>
-  </table>
-</div>
-
-<div class="row_half">
-  <table class="results">
-    <tr>
-      <th>
-        Dersler
-      </th>
-      <th>Soru Sayısı</th>
-      <th>Doğru Sayısı</th>
-      <th>Yanlış Sayısı</th>
-      <th>İptal Sayısı</th>
-      <th>Net Sayısı</th>
-      <th>BS</th>
-    </tr>
-    <ng-container *ngFor="let session of exam.session">
-      <ng-container *ngFor="let lesson of session.lessons">
-        <tr>
-          <th>{{ lesson.title }}</th>
-          <td>{{ [ lesson.result.D, lesson.result.Y, lesson.result.B, lesson.result.I ] | sumall}}</td>
+          <td>{{ lesson.title }}</td>
           <td>{{ lesson.result.D }}</td>
           <td>{{ lesson.result.Y }}</td>
-          <td>{{ lesson.result.I }}</td>
+          <td>{{ lesson.result.B }}</td>
           <td>{{ lesson.result.N }}</td>
-          <td>{{ lesson.result.degree.all }}</td>
         </tr>
       </ng-container>
     </ng-container>
-  </table>
-</div>
-
-<div class="row_half" style="padding: 0;">
-  <table class="results" style="width: 100%">
-    <tr>
-      <td>Not: Genel, sınava giren tüm okulları ifade eder.</td>
-
+    <tr *ngFor="let item of exam.result.point">
+      <td>Sınav Puanı</td>
+      <td colspan="4"><b>{{ item.result }}</b></td>
     </tr>
-    <tr>
-      <td>BS: Nete göre başarı sırasını ifade eder.</td>
-    </tr>
-  </table>
-</div>
+  </tbody>
+</nz-table>
 
-<div class="row">
-  <div class="kazanim_title">
-    <span>Ders/Konu/Kazanım</span>
-    <span>%</span>
-    <span>Y</span>
-    <span>D</span>
-    <span>SS</span>
-  </div>
-  <div class="kazanim_title">
-    <span>Ders/Konu/Kazanım</span>
-    <span>%</span>
-    <span>Y</span>
-    <span>D</span>
-    <span>SS</span>
-  </div>
-  <ng-container *ngFor="let item of exam.gain_analysis">
-    <div class="kazanim_title">
-      <span>
-        {{ item.lesson_title }}
-        <ng-container *ngIf="item.lesson_title != item.lesson_unit_title">/ {{ item.lesson_unit_title }}</ng-container>
-        <ng-container *ngIf="item.lesson_unit_title != item.lesson_unit_topic_title">/ {{ item.lesson_unit_topic_title }}</ng-container>
-        <ng-container *ngIf="item.lesson_unit_topic_title != item.gain_title">/ {{ item.gain_title }}</ng-container>
-      </span>
-      <span>{{ item.stats.persentage }}</span>
-      <span>{{ item.stats[2] }}</span>
-      <span>{{ item.stats[1] }}</span>
-      <span>{{ item.stats.total }}</span>
+<div style="margin-bottom: 1.125rem;">
+<ng-container *ngIf="exam.point === 500; else tmpExamNot500;">
+<nz-result
+    *ngIf="exam.result.point[0].result >= 440">
+    <div nz-result-title>Kayıt ve burs hakedişiniz vardır.</div>
+    <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
+    <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
+</nz-result>
+<nz-result
+    *ngIf="exam.result.point[0].result >= 350 && exam.result.point[0].result < 440">
+    <div nz-result-title>Kayıt hakedişiniz vardır.</div>
+    <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
+    <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
+</nz-result>
+<nz-result
+    *ngIf="exam.result.point[0].result < 350">
+    <div nz-result-title>Burs hakedişiniz yoktur.</div>
+    <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
+    <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
+</nz-result>
+</ng-container>
+<ng-template #tmpExamNot500>
+  <nz-result>
+    <div nz-result-content style="text-align: center;">
+      Kayıt süreci hakkında bilgi almak için 0216 415 00 00 telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz. Kayıt için son tarih 28 Mart Cumartesi günüdür.
     </div>
-    <div class="clear"></div>
-  </ng-container>
+</nz-result>
+</ng-template>
 </div>
+
+<nz-table #gainTable nzSize="small" [nzData]="exam.gain_analysis" [nzFrontPagination]="false">
+  <thead>
+    <tr>
+      <th>Ders/Konu/Kazanım</th>
+      <th>%</th>
+      <th>Y</th>
+      <th>D</th>
+      <th>SS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of gainTable.data">
+      <td>
+        {{ item.lesson_title }}
+        <ng-container *ngIf="item.lesson_unit_title && item.lesson_title != item.lesson_unit_title">
+          / {{ item.lesson_unit_title }}
+        </ng-container>
+        <ng-container *ngIf="item.lesson_unit_topic_title && item.lesson_unit_title != item.lesson_unit_topic_title">
+          / {{ item.lesson_unit_topic_title }}</ng-container>
+        <ng-container *ngIf="item.gain_title && item.lesson_unit_topic_title != item.gain_title">
+          / {{ item.gain_title }}
+        </ng-container>
+      </td>
+      <td>{{ item.stats.persentage }}</td>
+      <td>{{ item.stats[2] }}</td>
+      <td>{{ item.stats[1] }}</td>
+      <td>{{ item.stats.total }}</td>
+    </tr>
+  </tbody>
+</nz-table>

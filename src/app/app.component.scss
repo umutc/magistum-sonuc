@@ -6,7 +6,7 @@
 }
 
 .app-layout {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .menu-sidebar {
@@ -64,9 +64,14 @@ nz-header {
 .app-header {
   position: relative;
   height: 64px;
-  padding: 0;
+  padding: 0 8px;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  display: flex;
+  justify-content: center;
+  img {
+    height: 64px;
+  }
 }
 
 nz-content {
@@ -76,7 +81,6 @@ nz-content {
 .inner-content {
   padding: 24px;
   background: #fff;
-  height: 100%;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -86,8 +90,8 @@ nz-content {
   .inner-content {
     padding: 4px;
   }
-  nz-sider,
-  nz-header {
-    display: none;
-  }
+  // nz-sider,
+  // nz-header {
+  //   display: none;
+  // }
 }
