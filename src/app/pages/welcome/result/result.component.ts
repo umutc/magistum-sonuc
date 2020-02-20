@@ -12,7 +12,7 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class ResultComponent implements OnDestroy {
 
-  pid = new FormControl('55555555555', [Validators.required, Validators.minLength(11), Validators.maxLength(11)])
+  pid = new FormControl(null, [Validators.required, Validators.minLength(11), Validators.maxLength(11)])
   loading$: Subject<null | true> = new Subject();
   exam$: Subject<null | true> = new Subject();
   submit: EventEmitter<string> = new EventEmitter();
