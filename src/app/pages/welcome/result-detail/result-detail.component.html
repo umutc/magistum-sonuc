@@ -67,21 +67,15 @@
 <ng-container *ngIf="exam.point === 500; else tmpExamNot500;">
 <nz-result
     *ngIf="exam.result.point[0].result >= 440">
-    <div nz-result-title>Kayıt ve burs hakedişiniz vardır.</div>
-    <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
-    <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
+    <div nz-result-content style="text-align: center;">Öğrencimiz sınav sonucunda kayıt ve eğitim başarı indirim hakkı kazanmıştır. <br> Kayıt için son tarih 28 Mart Cumartesi günüdür. Kayıt süreci ve eğitim başarı indirimi hakkında bilgi almak için 0216 415 00 00 telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz.</div>
 </nz-result>
 <nz-result
     *ngIf="exam.result.point[0].result >= 350 && exam.result.point[0].result < 440">
-    <div nz-result-title>Kayıt hakedişiniz vardır.</div>
-    <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
-    <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
+    <div nz-result-content style="text-align: center;">Öğrencimiz sınav sonucunda kayıt hakkı kazanmıştır. <br> Kayıt için son tarih 28 Mart Cumartesi günüdür. Kayıt süreci hakkında bilgi almak için 0216 415 00 00 telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz.</div>
 </nz-result>
 <nz-result
     *ngIf="exam.result.point[0].result < 350">
-    <div nz-result-title>Burs hakedişiniz yoktur.</div>
-    <div nz-result-subtitle>Kayıt süreciyle ilgili Halkla İlişkiler Birimi taradından 29 Şubat 2020'ye kadar sizinle iletişime geçilecektir.</div>
-    <div nz-result-content style="text-align: center;">Arzu ederseniz 0216 415 00 00 telefondan (Dahili: 1351,1352,1353,1354,1355) siz de Halkla İlişkiler Brimimize ulaşabilirsiniz.</div>
+<div nz-result-content style="text-align: center;">Öğrencimiz kayıt için yedek listemizde yer almaktadır. <br> Kayıt için son tarih 28 Mart Cumartesi günüdür. Kayıt süreci hakkında bilgi almak için 0216 415 00 00 telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz.</div>
 </nz-result>
 </ng-container>
 <ng-template #tmpExamNot500>
