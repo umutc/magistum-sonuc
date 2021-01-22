@@ -6,7 +6,7 @@
 </div>
 
 
-<nz-table #colSpanTable [nzData]="[true]" [nzShowPagination]="false" nzBordered class="student_identity"
+<nz-table [nzData]="[true]" [nzShowPagination]="false" nzBordered class="student_identity"
   style="margin-bottom: 1.125rem;">
   <tbody>
     <tr>
@@ -31,7 +31,7 @@
   </tbody>
 </nz-table>
 
-<nz-table #colSpanTable [nzData]="[true]" [nzShowPagination]="false" nzBordered style="margin-bottom: 1.125rem;">
+<nz-table [nzData]="[true]" [nzShowPagination]="false" nzBordered style="margin-bottom: 1.125rem;">
   <thead>
     <tr>
       <th colspan="5">AGS (Anabilim Giriş Sınavı) Sonucu</th>
@@ -66,22 +66,37 @@
 <div style="margin-bottom: 1.125rem;">
 <ng-container *ngIf="exam.point === 500; else tmpExamNot500;">
 <nz-result
-    *ngIf="exam.result.point[0].result >= 440">
-    <div nz-result-content style="text-align: center;">Öğrencimiz sınav sonucunda kayıt ve eğitim başarı indirim hakkı kazanmıştır. <br> Kayıt için son tarih 28 Mart Cumartesi günüdür. Kayıt süreci ve eğitim başarı indirimi hakkında bilgi almak için 0216 415 00 00 telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz.</div>
+    *ngIf="exam.result.point[0].result >= 440"
+    style="box-shadow: 0 8px 10px -5px rgb(0 0 0 / 20%), 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%);">
+    <div nz-result-content style="text-align: center;">
+      Öğrencimiz sınav sonucunda kayıt ve eğitim başarı indirim hakkı kazanmıştır. <br>
+      Eğitim başarı indirim hakkı kazanan öğrencilerin, kayıt işlemlerinin 10 gün içinde tamamlanması gerekmektedir. <br>
+      Kayıt süreci ve eğitim başarı indirimi hakkında bilgi almak için <a href="tel:+902164150000">0216 415 00 00</a> telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz. <br>
+    </div>
 </nz-result>
 <nz-result
-    *ngIf="exam.result.point[0].result >= 350 && exam.result.point[0].result < 440">
-    <div nz-result-content style="text-align: center;">Öğrencimiz sınav sonucunda kayıt hakkı kazanmıştır. <br> Kayıt için son tarih 28 Mart Cumartesi günüdür. Kayıt süreci hakkında bilgi almak için 0216 415 00 00 telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz.</div>
+    *ngIf="exam.result.point[0].result >= 350 && exam.result.point[0].result < 440"
+    style="box-shadow: 0 8px 10px -5px rgb(0 0 0 / 20%), 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%);">
+    <div nz-result-content style="text-align: center;">
+      Öğrencimiz sınav sonucunda kayıt hakkı kazanmıştır. <br>
+      Kayıt hakkı kazanan öğrencilerin velileri, 16 Nisan 2021 tarihine kadar devam edecek erken kayıt döneminde kayıt olabilirler. <br>
+      Kayıt süreci hakkında bilgi almak için <a href="tel:+902164150000">0216 415 00 00</a> telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz. <br>
+    </div>
 </nz-result>
 <nz-result
-    *ngIf="exam.result.point[0].result < 350">
-<div nz-result-content style="text-align: center;">Öğrencimiz kayıt için yedek listemizde yer almaktadır. <br> Kayıt için son tarih 28 Mart Cumartesi günüdür. Kayıt süreci hakkında bilgi almak için 0216 415 00 00 telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz.</div>
+    *ngIf="exam.result.point[0].result < 350"
+    style="box-shadow: 0 8px 10px -5px rgb(0 0 0 / 20%), 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%);">
+<div nz-result-content style="text-align: center;">
+  Öğrencimiz kayıt için yedek listemizde yer almaktadır. <br>
+  Erken kayıt için son tarih 16 Nisan Cuma günüdür. <br>
+  Kayıt süreci hakkında bilgi almak için <a href="tel:+902164150000">0216 415 00 00</a> telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz.   <br>
+</div>
 </nz-result>
 </ng-container>
 <ng-template #tmpExamNot500>
-  <nz-result>
+  <nz-result style="box-shadow: 0 8px 10px -5px rgb(0 0 0 / 20%), 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%);">
     <div nz-result-content style="text-align: center;">
-      Kayıt süreci hakkında bilgi almak için 0216 415 00 00 telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz. Kayıt için son tarih 28 Mart Cumartesi günüdür.
+      Kayıt süreci hakkında bilgi almak için <a href="tel:+902164150000">0216 415 00 00</a> telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz. Kayıt için son tarih 16 Nisan Cuma günüdür.
     </div>
 </nz-result>
 </ng-template>
