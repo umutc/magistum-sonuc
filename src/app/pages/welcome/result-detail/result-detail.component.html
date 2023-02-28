@@ -66,7 +66,7 @@
 <div style="margin-bottom: 1.125rem;">
 <ng-container *ngIf="exam.point === 500; else tmpExamNot500;">
 <nz-result
-    *ngIf="exam.result.point[0].result >= 450"
+    *ngIf="exam.result.point[0].result >= 430"
     style="box-shadow: 0 8px 10px -5px rgb(0 0 0 / 20%), 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%);">
     <div nz-result-content style="text-align: center;">
       Öğrencimiz sınav sonucunda kayıt ve eğitim başarı indirim hakkı kazanmıştır. <br>
@@ -75,20 +75,20 @@
     </div>
 </nz-result>
 <nz-result
-    *ngIf="exam.result.point[0].result >= 350 && exam.result.point[0].result < 450"
+    *ngIf="exam.result.point[0].result >= 340 && exam.result.point[0].result < 430"
     style="box-shadow: 0 8px 10px -5px rgb(0 0 0 / 20%), 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%);">
     <div nz-result-content style="text-align: center;">
       Öğrencimiz sınav sonucunda kayıt hakkı kazanmıştır. <br>
-      Kayıt hakkı kazanan öğrencilerin velileri, 17 Şubat 2023 tarihine kadar devam edecek erken kayıt döneminde kayıt olabilirler. <br>
+      Kayıt hakkı kazanan öğrencilerin velileri, 14 Nisan 2023 tarihine kadar devam edecek erken kayıt döneminde kayıt olabilirler. <br>
       Kayıt süreci hakkında bilgi almak için <a href="tel:+902164150000">0216 415 00 00</a> telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz. <br>
     </div>
 </nz-result>
 <nz-result
-    *ngIf="exam.result.point[0].result < 350"
+    *ngIf="exam.result.point[0].result < 340"
     style="box-shadow: 0 8px 10px -5px rgb(0 0 0 / 20%), 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%);">
 <div nz-result-content style="text-align: center;">
   Öğrencimiz kayıt için yedek listemizde yer almaktadır. <br>
-  Erken kayıt için son tarih 17 Şubat 2023 günüdür. <br>
+  Erken kayıt için son tarih 14 Nisan 2023 günüdür. <br>
   Kayıt süreci hakkında bilgi almak için <a href="tel:+902164150000">0216 415 00 00</a> telefonu arayarak Halkla İlişkiler Birimimize ulaşabilirsiniz.   <br>
 </div>
 </nz-result>
